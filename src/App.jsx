@@ -1,7 +1,34 @@
 import React from "react"
+import Home from "./components/Home"
+import Blogs from "./components/Blogs"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import Creaters from "./components/Creater"
+import Layout from "./components/Layout.jsx/Layout"
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          path: "/",
+          element: <Home />
+
+        },
+        {
+          path: "/blogs",
+          element: <Blogs />
+        },
+        {
+          path: "/creaters",
+          element: <Creaters />
+        }
+      ]
+    },
+  ])
   return (<>
-    <h1 className="bg-blue-900 mt-6 text-white"> hello salma kasa huu app!</h1>
+
+    <RouterProvider router={router} />
   </>)
 }
 
