@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (<>
+
+
     <footer className="bg-gray-900 text-gray-300 py-8  mt-auto bottom-0">
       <div className="max-w-6xl mx-auto px-4">
 
