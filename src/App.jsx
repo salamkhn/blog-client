@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Creaters from "./components/Creater"
 import Layout from "./components/Layout.jsx/Layout"
 import SingePageBlog from "./components/SingePAgeBlog"
+import Signup from "./components/signup"
 function App() {
   const router = createBrowserRouter([
     {
@@ -29,6 +30,10 @@ function App() {
         {
           path: "/blogdetail/:id",
           element: <SingePageBlog />
+        },
+        {
+          path: "/signup",
+          element: <Signup />
         }
       ]
     },

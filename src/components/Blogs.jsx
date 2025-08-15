@@ -7,13 +7,12 @@ import { NavLink } from "react-router-dom"
 
 const Blogs = () => {
   const blogsData = useContext(Blogcontext)
-
+  
   const {
     allBlogs
   } = blogsData
 
   console.log("Blog in Blogs =>:", typeof allBlogs)
-
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-14 mx-6">
       {allBlogs?.map((blog, index) => {
