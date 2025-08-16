@@ -7,6 +7,7 @@ import Creaters from "./components/Creater"
 import Layout from "./components/Layout.jsx/Layout"
 import SingePageBlog from "./components/SingePAgeBlog"
 import Signup from "./components/signup"
+import { Toaster } from "react-hot-toast"
 function App() {
   const router = createBrowserRouter([
     {
@@ -41,6 +42,7 @@ function App() {
   return (<>
 
     <RouterProvider router={router} />
+    <Toaster position="top-center" reverseOrder="false" />
   </>)
 }
 

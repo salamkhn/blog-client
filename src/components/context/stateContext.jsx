@@ -4,10 +4,14 @@ import { useState } from 'react'
 import axios from "axios"
 import { useEffect } from 'react'
 import { Blog } from '../../../../Server/model/blogModel'
+
+import toast from "react-hot-toast"
 const StateContext = ({ children }) => {
   const [allBlogs, setallBlogs] = useState([])
   const [creater, setCreaters] = useState([])
-  //ali calling
+
+
+
 
   //get Alltodos
 
@@ -43,21 +47,14 @@ const StateContext = ({ children }) => {
     fetchAllBlogs()
   }, [])
 
-  const signupuser = async () => {
-    try {
-      const userSignupDetails = await axios("http://localhost:3333/api/user/register")
-      console.log("userSignupDetails :", userSignupDetails)
-    } catch (err) {
-      console.log("error in catch of signupUser :", err.message)
-    }
-  }
 
 
   return (
     <Blogcontext.Provider
       value={{
         allBlogs,
-        creater
+        creater,
+
       }}
     >
       {children}
