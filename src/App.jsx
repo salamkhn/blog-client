@@ -8,6 +8,7 @@ import Layout from "./components/Layout.jsx/Layout"
 import SingePageBlog from "./components/SingePAgeBlog"
 import Signup from "./components/signup"
 import { Toaster } from "react-hot-toast"
+import Login from "./components/Login"
 function App() {
   const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ function App() {
         {
           path: "/signup",
           element: <Signup />
+        },
+        {
+          path:"/login",
+          element:<Login/>
         }
       ]
     },

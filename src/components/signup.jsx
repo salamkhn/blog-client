@@ -151,7 +151,7 @@ const Signup = () => {
         </div>
 
         {/* Signup Button */}
-        <button
+        <button type='submit'
           className="py-3 w-full border-2 rounded-2xl text-xl sm:text-2xl bg-white text-black hover:bg-gray-200 transition-all duration-300 mt-4"
         >
           Signup
