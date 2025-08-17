@@ -9,7 +9,14 @@ import SingePageBlog from "./components/SingePAgeBlog"
 import Signup from "./components/signup"
 import { Toaster } from "react-hot-toast"
 import Login from "./components/Login"
+import { Navigate } from "react-router-dom"
+import PageNotFound from "./components/PageNotFound"
+import Dashbord from "./components/Dashbode"
 function App() {
+
+  // getting token form the local storage
+  const token = localStorage.getItem("jwt")
+  console.log("token :", token)
   const router = createBrowserRouter([
     {
       path: "/",
@@ -22,7 +29,7 @@ function App() {
         },
         {
           path: "/blogs",
-          element: <Blogs />
+          element: token ? <Dashbord /> : <Navigate to={"/login"} />
         },
 
         {
@@ -38,9 +45,18 @@ function App() {
           element: <Signup />
         },
         {
-          path:"/login",
-          element:<Login/>
-        }
+          path: "/login",
+          element: <Login />
+        },
+        {
+          path: "/dashbord",
+          element: <Dashbord />
+
+        },
+        {
+          path: "*",
+          element: <PageNotFound />
+        },
       ]
     },
   ])

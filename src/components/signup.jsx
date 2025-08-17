@@ -1,5 +1,7 @@
 
 import React, { useContext, useState } from 'react'
+import {useNavigate} from "react-router-dom"
+import { NavLink } from 'react-router-dom'
 import Blogcontext from './context/createContext.jsx'
 import axios from 'axios'
 
@@ -8,6 +10,7 @@ import toast from "react-hot-toast"
 
 const Signup = () => {
 
+   const Navigate=useNavigate()
   const [user, setuser] = useState({
     userName: "",
     email: "",
@@ -35,7 +38,7 @@ const Signup = () => {
 
     console.log("user :", user)
     try {
-      const { data } = await axios.post("http://localhost:3333/api/user/register", user, {
+      const { data } = await axios.post("http://localhost:3333/api/user/register", formdata, {
         withCredentials: true,
         headers: {
           "Content-Type": "multipart/form-data"
@@ -44,6 +47,7 @@ const Signup = () => {
 
       console.log("user from user signup :", user.role)
       toast.success(`${data.message} ${user.role}` || "user Registered successfully !")
+        Navigate("/login")
 
     } catch (error) {
       console.log("error from res :", error)
@@ -154,10 +158,10 @@ const Signup = () => {
         <button type='submit'
           className="py-3 w-full border-2 rounded-2xl text-xl sm:text-2xl bg-white text-black hover:bg-gray-200 transition-all duration-300 mt-4"
         >
-          Signup
+          Login
         </button>
-
       </div>
+      <p className='pt-3 text-xl'>already have an account ?<NavLink className="px-1 italic font-thin text-blue-700 text-italic underline" to="/login">login</NavLink></p>
     </form>
 
 

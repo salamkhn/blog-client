@@ -2,12 +2,14 @@ import React, { useState } from 'react'
 
 import axios from 'axios'
 import toast from 'react-hot-toast'
-
+import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 
 
 const Login = () => {
+  const Navigate = useNavigate()
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
 
@@ -21,13 +23,21 @@ const Login = () => {
           password
         },
         {
-          withCrendentials: true,
+          withCredentials: true,
           headers: {
             "Content-Type": "application/json"
           }
         }
+
       )
+      console.log("data from the token :", data)
+      // setting token in local storage 
+      localStorage.setItem("jwt", data.token)
+
+      // toast with success
       toast.success(data.message)
+      Navigate("/blogs")
+
     } catch (error) {
       toast.error(error.response.data.message)
     }
@@ -51,6 +61,7 @@ const Login = () => {
           className=' font-sm h-[3.1rem] mx-w-[20rem] px-3 outline-0 border-2 border-white rounded-sm text-gray-400 ' type="text" placeholder='Enter your password' />
       </div>
       <button className="py-3 w-full border-2 rounded-2xl text-xl sm:text-2xl bg-white text-black hover:bg-gray-200 transition-all duration-300 mt-4 cursor-pointer" type='submit'>Login</button>
+      <p className='pt-3 text-xl'>are you new ?<NavLink className="px-1 italic font-thin text-blue-700 text-italic underline" to="/signup">signup</NavLink></p>
     </form>
 
   </>)
