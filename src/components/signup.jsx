@@ -149,7 +149,7 @@ const Signup = () => {
           file:bg-blue-50 file:text-blue-700
           hover:file:bg-blue-100
         "
-
+           
             onChange={(e) => setuser({ ...user, userprofile: e.target.files[0] })}
           />
         </div>

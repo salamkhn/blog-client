@@ -12,6 +12,7 @@ import Login from "./components/Login"
 import { Navigate } from "react-router-dom"
 import PageNotFound from "./components/PageNotFound"
 import Dashbord from "./components/Dashbode"
+import CreateBlog from "./components/DashbordComponents/CreateBlog"
 function App() {
 
   // getting token form the local storage
@@ -51,6 +52,12 @@ function App() {
         {
           path: "/dashbord",
           element: <Dashbord />
+
+        },
+
+        {
+          path: "/createBlog",
+          element: <CreateBlog />
 
         },
         {

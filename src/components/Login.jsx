@@ -5,9 +5,6 @@ import toast from 'react-hot-toast'
 import { NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
-
-
-
 const Login = () => {
   const Navigate = useNavigate()
   const [email, setemail] = useState("")
@@ -33,6 +30,7 @@ const Login = () => {
       console.log("data from the token :", data)
       // setting token in local storage 
       localStorage.setItem("jwt", data.token)
+      localStorage.setItem("userId", data.userID)
 
       // toast with success
       toast.success(data.message)
