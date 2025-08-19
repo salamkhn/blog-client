@@ -6,7 +6,8 @@ import { NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-  const Navigate = useNavigate()
+  const navigate = useNavigate()
+
   const [email, setemail] = useState("")
   const [password, setpassword] = useState("")
 
@@ -34,7 +35,7 @@ const Login = () => {
 
       // toast with success
       toast.success(data.message)
-      Navigate("/blogs")
+      navigate("/dashbord")
 
     } catch (error) {
       toast.error(error.response.data.message)

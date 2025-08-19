@@ -51,7 +51,7 @@ const Dashbord = () => {
 
   useEffect(() => {
     const fetchedUserSpecificBlog = async () => {
-      const { data } = await axios.get(`http://localhost:3333/api/blog/userspecificblogs/689c02d815cc416c71c33638`, {
+      const { data } = await axios.get(`http://localhost:3333/api/blog/userspecificblogs/${userID}`, {
         withCredentials: true,
       })
       console.log("userSpecificBlog :", data)
@@ -67,7 +67,7 @@ const Dashbord = () => {
     <div className='w-screen h-screen flex'>
 
       {/* left side */}
-      
+
       <div>
         {
           filteredCreater?.map((filtercreater, index) => {

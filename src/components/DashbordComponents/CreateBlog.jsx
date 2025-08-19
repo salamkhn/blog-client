@@ -1,18 +1,30 @@
 import axios from 'axios'
 import React, { useState } from 'react'
+import toast from 'react-hot-toast'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { IoMdArrowRoundBack } from "react-icons/io";
+
 
 export const CreateBlog = () => {
+
+
+  const navigate = useNavigate()
+
+  // handle go back function
+  const handlegoback = () => {
+    navigate("/dashbord")
+  }
 
   // userState for BlogDetails
   const [blog, setblog] = useState({
     title: "",
-    category: "",
+    category: "education",
     image: "",
     content: ""
   })
 
   const handlecreateBlog = async (e) => {
-    e.preventDefault()         
+    e.preventDefault()
     try {
       //working with formData() so that we can  save files
       const formdata = new FormData();
@@ -30,10 +42,11 @@ export const CreateBlog = () => {
         { withCredentials: true }
       )
 
-      console.log("data :", data)
+      //showing response in toastx
+      toast.success(data.message)
 
     } catch (err) {
-      console.log("error in catch of createBlog :", err)
+      toast.error(err.response.data.message)
     }
   }
 
@@ -53,7 +66,7 @@ export const CreateBlog = () => {
               type="text"
               placeholder='Enter your title'
               value={blog.title}
-              onChange={(e) => setblog(e.target.value)}
+              onChange={(e) => setblog({ ...blog, title: e.target.value })}
             />
 
           </div>
@@ -63,8 +76,8 @@ export const CreateBlog = () => {
             </label>
             <select
               className='h-15.5 text-xl md:text-2xl px-2 font-semibold focus:outline-0 border-[1px] focus:border-[3px] text-blue-500 border-blue-700 w-full rounded-lg w-full'
-              value={blog}
-              onChange={(e) => setblog(e.target.value)}
+              value={blog.category}
+              onChange={(e) => setblog({ ...blog, category: e.target.value })}
             >
               {
                 Categories.map((category, index) => <option key={index} value={category}>{category}</option>)
@@ -78,7 +91,7 @@ export const CreateBlog = () => {
             <input className='file:shadow-xs  cursor-pointer file: border-2 cursor-pointer rounded-lg text-blue-700 font-semibold h-14 text-center items-center m-auto py-3.5 px-3.5'
               type="file"
               placeholder='upload Image'
-              onChange={(e) => e.target.files[0]}
+              onChange={(e) => setblog({ ...blog, image: e.target.files[0] })}
 
             />
           </div>
@@ -90,13 +103,17 @@ export const CreateBlog = () => {
               name="content"
               id="content"
               value={blog.content}
-              onChange={(e) => e.target.value}
+              onChange={(e) => setblog({ ...blog, content: e.target.value })}
+
             >
             </textarea>
           </div>
 
           <button type='submit' className=' py-4 w-full my-3 bg-blue-700 text-white text-xl md:text-2xl cursor-pointer font-semibold rounded-[3px] hover:bg-blue-900  transition duration-150'>post Blog</button>
         </div>
+
+        <NavLink className='bg-black text-white text-2xl text-center top-10% py-3 px-2.5 font-semibold rounded-md w-[10rem]' onClick={handlegoback} > <IoMdArrowRoundBack /> go back</NavLink>
+
       </form>
     </div>
 

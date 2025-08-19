@@ -17,7 +17,7 @@ function App() {
 
   // getting token form the local storage
   const token = localStorage.getItem("jwt")
-  console.log("token :", token)
+  console.log("token in app.jsx :", token)
   const router = createBrowserRouter([
     {
       path: "/",
@@ -30,7 +30,7 @@ function App() {
         },
         {
           path: "/blogs",
-          element: token ? <Dashbord /> : <Navigate to={"/login"} />
+          element: <Blogs />
         },
 
         {
@@ -51,8 +51,7 @@ function App() {
         },
         {
           path: "/dashbord",
-          element: <Dashbord />
-
+          element: token ? <Dashbord /> : <Navigate to="/login" />
         },
 
         {
