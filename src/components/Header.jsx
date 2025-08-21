@@ -4,15 +4,20 @@ import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast';
 
 const Header = () => {
-  const Navigate = useNavigate()
+  const navigate = useNavigate()
 
   //function for clear token
   const clearToken = () => {
     localStorage.removeItem("jwt");
     toast.success("Logout successfully")
     console.log("user logout successfully")
-    Navigate("/login")
+    navigate("/login")
 
+  }
+
+  // handle dashbord
+  const handledashbord = () => {
+    navigate("/dashbord")
   }
 
   // grtting token from the local storage for logout logic
@@ -34,7 +39,7 @@ const Header = () => {
 
 
       <div className='flex flex-row gap-2 items-center justify-center'>
-        <NavLink to="/dashbord" className="bg-white text-black cursor-pointer rounded-lg hover:bg-black hover:bg-gray-200 transition duration-300  py-2.5 px-2.5 font-semibold text-lg">Dashbord</NavLink>
+        <button onClick={handledashbord} className="bg-white text-black cursor-pointer rounded-lg hover:bg-black hover:bg-gray-200 transition duration-300  py-2.5 px-2.5 font-semibold text-lg">Dashbord</button>
         {
           token ? <button onClick={clearToken} className='bg-white text-black cursor-pointer rounded-lg hover:bg-black hover:bg-gray-200 transition duration-300  py-2.5 px-2.5 font-semibold text-lg'>Logout</button>
             : <NavLink to="/signup" className='bg-white text-black cursor-pointer rounded-lg hover:bg-black hover:bg-gray-200 transition duration-300  py-3 px-3.5 font-semibold text-lg'>Signup</NavLink >

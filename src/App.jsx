@@ -13,6 +13,7 @@ import { Navigate } from "react-router-dom"
 import PageNotFound from "./components/PageNotFound"
 import Dashbord from "./components/Dashbode"
 import CreateBlog from "./components/DashbordComponents/CreateBlog"
+import AdminProfile from "./components/DashbordComponents/adminProfile"
 function App() {
 
   // getting token form the local storage
@@ -57,6 +58,11 @@ function App() {
         {
           path: "/createBlog",
           element: <CreateBlog />
+
+        },
+        {
+          path: "profile",
+          element: <AdminProfile />
 
         },
         {

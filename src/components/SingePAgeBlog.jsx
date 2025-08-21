@@ -8,7 +8,7 @@ const SingePageBlog = () => {
   const Navigate = useNavigate()
   const { id } = useParams()
   console.log("id :", id)
-
+  
   const blogsData = useContext(Blogcontext);
   console.log("single blogs details :=>", blogsData)
 

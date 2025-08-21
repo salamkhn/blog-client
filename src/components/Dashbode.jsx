@@ -7,17 +7,11 @@ import { useContext } from 'react'
 import Blogcontext from './context/createContext'
 import { useNavigate } from 'react-router-dom'
 
-
-
 const Dashbord = () => {
   const [userSpecifiedBlogs, setuserSpecifiedBlogs] = useState([])
   const { creater } = useContext(Blogcontext)
   console.log("creater :", creater)
   const navigate = useNavigate()
-
-
-
-
 
   const userID = localStorage.getItem("userId")
   const filteredCreater = creater.filter((creater) => creater._id === userID)
@@ -25,29 +19,18 @@ const Dashbord = () => {
   console.log("filteredCreater :", filteredCreater)
 
 
-  //handle createrBlog function
+
+  // go to openuserProfile
+  const gotoprofileDetail = () => {
+    navigate('/profile')
+  }
+
+  //go to  createrBlog function
   const createBlog = () => {
     navigate("/createBlog")
   }
 
-
-
-
-
-
   console.log("userID :", userID)
-  //dont forgot to changed userID with the given id
-  //dont forgot to changed userID with the given id
-  //dont forgot to changed userID with the given id
-  //dont forgot to changed userID with the given id
-  //dont forgot to changed userID with the given id
-
-  // function for fetching all userSpecific blogs
-
-
-
-
-
 
   useEffect(() => {
     const fetchedUserSpecificBlog = async () => {
@@ -68,10 +51,10 @@ const Dashbord = () => {
 
       {/* left side */}
 
-      <div>
+      <div> 
         {
           filteredCreater?.map((filtercreater, index) => {
-            return <div className='hidden md:block bg-gray-400 min-w-[20rem] h-screen   flex flex-col px-4     py-3.5  gap-3 space-y-5'>
+            return <div className='hidden md:block bg-gray-400 min-w-[20rem] h-auto py-3.5 mb-2   flex flex-col px-4     py-3.5  gap-3 space-y-5'>
               <div className='flex flex-row justify-center items-center'>
                 <figure className='w-40 h-40 rounded-full overflow-hidden'>
                   <img style={{ boxShadow: " rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px" }} className='w-full h-full object-cover' src={filtercreater.userprofile} alt="image-loading" />
@@ -84,7 +67,7 @@ const Dashbord = () => {
                 <button onClick={createBlog} className=' cursor-pointer w-[40rem] bg-[#306646] rounded-lg w-full font-serif font-semibold self-stretch text-xl sm:text-2xl py-2 px-3.5 text-white'>Create Blog</button>
               </div>
               <div>
-                <button className=' cursor-pointer w-[40rem] bg-[#465C88] rounded-lg w-full font-serif font-semibold self-stretch text-xl sm:text-2xl py-2 px-3.5 text-white'>Profile</button>
+                <button onClick={gotoprofileDetail} className=' cursor-pointer w-[40rem] bg-[#465C88] rounded-lg w-full font-serif font-semibold self-stretch text-xl sm:text-2xl py-2 px-3.5 text-white'>Profile</button>
               </div>
               <div>
                 <button className=' cursor-pointer w-[40rem] bg-[#320A6B] rounded-lg w-full font-serif font-semibold self-stretch text-xl sm:text-2xl py-2 px-3.5 text-white'>Home</button>
