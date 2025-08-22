@@ -25,6 +25,10 @@ export const CreateBlog = () => {
 
   const handlecreateBlog = async (e) => {
     e.preventDefault()
+    if (!blog.image) {
+      toast.error("⚠️Please provide an image before posting blog")
+      return
+    }
     try {
       //working with formData() so that we can  save files
       const formdata = new FormData();
@@ -44,10 +48,21 @@ export const CreateBlog = () => {
 
       //showing response in toastx
       toast.success(data.message)
+      // setting field's to empty
+      setblog({
+        category: "education",
+        content: "",
+        image: "",
+        title: ""
+      })
+      navigate("/dashbord")
 
     } catch (err) {
       toast.error(err.response.data.message)
     }
+
+
+
   }
 
   //categories Array

@@ -14,8 +14,8 @@ const Footer = () => {
 
           {/* Logo + About */}
           <div className="text-center md:text-left">
-            <h1 className="text-2xl font-bold text-white">MyBlog</h1>
-            <p className="text-sm mt-2 max-w-xs">
+            <h1 className="text-2xl md:3xl font-bold text-white">MyBlog</h1>
+            <p className="text-sm sm:text-md mt-2 max-w-xs">
               Share your thoughts, read amazing stories, and connect with writers worldwide.
             </p>
           </div>

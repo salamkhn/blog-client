@@ -8,7 +8,7 @@ const SingePageBlog = () => {
   const Navigate = useNavigate()
   const { id } = useParams()
   console.log("id :", id)
-  
+
   const blogsData = useContext(Blogcontext);
   console.log("single blogs details :=>", blogsData)
 
@@ -32,7 +32,7 @@ const SingePageBlog = () => {
       {
         filteredData?.map((blogDetail, index) => {
           return (
-            <div className="mt-4 py-10 px-6">
+            <div key={blogDetail._id || index} className="mt-4 py-10 px-6">
               {filteredData?.map((blogDetail) => (
                 <div
                   key={blogDetail._id} // unique key (avoid index)

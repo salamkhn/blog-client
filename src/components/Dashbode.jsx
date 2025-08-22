@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom'
 import { useContext } from 'react'
 import Blogcontext from './context/createContext'
 import { useNavigate } from 'react-router-dom'
+import toast from 'react-hot-toast'
 
 const Dashbord = () => {
   const [userSpecifiedBlogs, setuserSpecifiedBlogs] = useState([])
@@ -46,15 +47,31 @@ const Dashbord = () => {
   }, [])
 
 
+  //handle clicked btn
+  const deleteHandle = async (id) => {
+    console.log("this id fetched-for deleting btn :", id)
+    try {
+      const { data } = await axios.delete(`http://localhost:3333/api/blog/deleteblog/${id}`,
+        { withCredentials: true }
+
+      )
+      console.log("dara form delete Blog :", data)
+      setuserSpecifiedBlogs(pre => pre.filter(blog => blog._id !== id))
+      toast.success('🗑️ blog deleted successfully')
+
+    } catch (err) {
+      console.log("error in handleDelete btn :", err)
+    }
+  }
   return (<>
-    <div className='w-screen h-screen flex'>
+    <div className=' flex'>
 
       {/* left side */}
 
-      <div> 
+      <div>
         {
           filteredCreater?.map((filtercreater, index) => {
-            return <div className='hidden md:block bg-gray-400 min-w-[20rem] h-auto py-3.5 mb-2   flex flex-col px-4     py-3.5  gap-3 space-y-5'>
+            return <div key={filtercreater._id || index} className='hidden md:block bg-gray-400 min-w-[20rem] h-auto py-3.5 mb-2   flex flex-col px-4     py-3.5  gap-3 space-y-5'>
               <div className='flex flex-row justify-center items-center'>
                 <figure className='w-40 h-40 rounded-full overflow-hidden'>
                   <img style={{ boxShadow: " rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px" }} className='w-full h-full object-cover' src={filtercreater.userprofile} alt="image-loading" />
@@ -83,31 +100,38 @@ const Dashbord = () => {
 
       {/* reght side */}
       <div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 my-14 mx-6">
+        <div className="grid grid-cols-1  lg:grid-cols-3 gap-6 py-14 mx-6 h-auto">
           {userSpecifiedBlogs?.map((blog, index) => {
-            return (<> <NavLink key={blog._id || index} to={`/blogdetail/${blog._id}`}
-
+            console.log("blog_id-checking =:>", blog._id)
+            return (<> <div key={blog._id || index}
               className="bg-[#101828] text-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-2xl transition duration-300 flex flex-col"
             >
               {/* Image */}
-              <div className="w-full h-56 overflow-hidden">
+              <NavLink to={`/blogdetail/${blog._id}`} className="w-full h-56 overflow-hidden">
+
                 <img
                   src={blog.image}
                   alt="blog_image"
                   className="w-full h-full object-cover hover:opacity-70 transition duration-300"
                 />
-              </div>
+              </NavLink>
+
 
               {/* Content */}
               <div className="p-5 flex flex-col gap-3">
                 <h2 className="text-xl font-bold font-serif">
                   {blog.title}
                 </h2>
-                <span className="text-sm text-gray-300 bg-gray-700 px-3 py-1 rounded-full w-fit">
-                  {blog.category}
-                </span>
+                <div className='flex flex-row justify-between'>
+                  <span className="text-sm text-gray-300 bg-gray-700 px-3 pt-2 rounded-full w-fit">
+                    {blog.category}
+                  </span>
+
+                  <button onClick={() => deleteHandle(blog._id)} className='bg-red-500 py-1.5 px-1.5 rounded-sm hover:rounded:lg cursor-pointer'>Delete</button>
+                </div>
               </div>
-            </NavLink>
+            </div>
+
             </>);
           })}
         </div>
