@@ -14,6 +14,21 @@ const Dashbord = () => {
   console.log("creater :", creater)
   const navigate = useNavigate()
 
+  // const handlelogout=()=>{
+
+  // }
+  const handlelogout = () => {
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("userId")
+    document.cookie = "jwt=; expires=thu,01 jan 1988 00:00:00 UTC;path=/";
+    toast.success("Logout successfully")
+    console.log("user logout successfully")
+    navigate("/login")
+
+  }
+
+
+
   const userID = localStorage.getItem("userId")
   const filteredCreater = creater.filter((creater) => creater._id === userID)
 
@@ -71,26 +86,26 @@ const Dashbord = () => {
       <div>
         {
           filteredCreater?.map((filtercreater, index) => {
-            return <div key={filtercreater._id || index} className='hidden md:block bg-gray-400 min-w-[20rem] h-auto py-3.5 mb-2   flex flex-col px-4     py-3.5  gap-3 space-y-5'>
+            return <div key={filtercreater._id || index} className='sticky left-0 top-0 bg-gray-400 w-[8rem] sm:w-[11rem] lg:w-[13rem] md:w-[15rem] xl-w-[20rem] py-3.5  flex flex-col    px-2 sm:px-2.5 lg:px-3 md:px3.5   md:px-4 py-2  sm:py-2.5 lg:py-3   md:py-3.5  gap-3 space-y-5'>
               <div className='flex flex-row justify-center items-center'>
-                <figure className='w-40 h-40 rounded-full overflow-hidden'>
+                <figure className='w-30 h-30 md:w-40 md:h-40 rounded-full overflow-hidden'>
                   <img style={{ boxShadow: " rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px" }} className='w-full h-full object-cover' src={filtercreater.userprofile} alt="image-loading" />
                 </figure>
               </div>
               <div>
-                <button style={{ boxShadow: "rgba(0, 0, 0, 0.19) 0px 20px 30px, rgba(0, 0, 0, 0.23) 0px 16px 16px" }} className=' w-[40rem] bg-blue-600 rounded-lg w-full font-serif font-semibold self-stretch text-xl sm:text-3xl border-2 border-white text-shadow-2xs py-8 px-3.5 text-white'>My Profile</button>
+                <button style={{ boxShadow: "rgba(0, 0, 0, 0.19) 0px 20px 30px, rgba(0, 0, 0, 0.23) 0px 16px 16px" }} className=' w-[40rem] bg-blue-600 rounded-lg w-full font-serif font-semibold self-stretch text-lg sm:text-xl md:text-2xl   border-2 border-white text-shadow-2xs py-4.5 px-2 md:py-7 md:px-2.5 xl:py-8 xl:px-3 text-white'>🙎‍♂️My Profile</button>
               </div>
               <div>
-                <button onClick={createBlog} className=' cursor-pointer w-[40rem] bg-[#306646] rounded-lg w-full font-serif font-semibold self-stretch text-xl sm:text-2xl py-2 px-3.5 text-white'>Create Blog</button>
+                <button onClick={createBlog} className=' cursor-pointer w-[40rem] bg-[#306646] rounded-lg w-full font-serif font-semibold self-stretch text-sm sm:text-lg md:text-2xl py-2 px-2 md:px-3.5 text-white'>Create Blog</button>
               </div>
               <div>
-                <button onClick={gotoprofileDetail} className=' cursor-pointer w-[40rem] bg-[#465C88] rounded-lg w-full font-serif font-semibold self-stretch text-xl sm:text-2xl py-2 px-3.5 text-white'>Profile</button>
+                <button onClick={gotoprofileDetail} className=' cursor-pointer w-[40rem] bg-[#465C88] rounded-lg w-full font-serif font-semibold self-stretch text-sm sm:text-lg md:text-2xl py-2 px-2  md:px-3.5 text-white'>Profile</button>
               </div>
               <div>
-                <button className=' cursor-pointer w-[40rem] bg-[#320A6B] rounded-lg w-full font-serif font-semibold self-stretch text-xl sm:text-2xl py-2 px-3.5 text-white'>Home</button>
+                <button onClick={() => navigate("/")} className=' cursor-pointer w-[40rem] bg-[#320A6B] rounded-lg w-full font-serif font-semibold self-stretch text-sm sm:text-lg md:text-2xl py-2 px-2  md:px-3.5 text-white'>Home</button>
               </div>
               <div>
-                <button className=' cursor-pointer w-[40rem] bg-red-700 rounded-lg w-full font-serif font-semibold self-stretch text-xl sm:text-2xl py-2 px-3.5 text-white'>Logout</button>
+                <button onClick={handlelogout} className='cursor-pointer w-[40rem] bg-red-700 rounded-lg w-full font-serif font-semibold self-stretch text-sm sm:text-lg md:text-2xl py-2  px-2 md:px-3.5 text-white'>Logout</button>
               </div>
 
             </div>
@@ -100,14 +115,14 @@ const Dashbord = () => {
 
       {/* reght side */}
       <div>
-        <div className="grid grid-cols-1  lg:grid-cols-3 gap-6 py-14 mx-6 h-auto">
+        <div className="flex flex-wrap gap-6 py-14 sm:mx-3 md:mx-4 lg:mx-5 h-auto">
           {userSpecifiedBlogs?.map((blog, index) => {
             console.log("blog_id-checking =:>", blog._id)
             return (<> <div key={blog._id || index}
               className="bg-[#101828] text-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-2xl transition duration-300 flex flex-col"
             >
               {/* Image */}
-              <NavLink to={`/blogdetail/${blog._id}`} className="w-full h-56 overflow-hidden">
+              <NavLink to={`/blogdetail/${blog._id}`} className="shrink-0 w-full h-56 overflow-hidden">
 
                 <img
                   src={blog.image}

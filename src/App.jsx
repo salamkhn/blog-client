@@ -5,7 +5,7 @@ import Blogs from "./components/Blogs"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Creaters from "./components/Creater"
 import Layout from "./components/Layout.jsx/Layout"
-import SingePageBlog from "./components/SingePAgeBlog"
+import SingePageBlog from "./components/SingePageBlog"
 import Signup from "./components/signup"
 import { Toaster } from "react-hot-toast"
 import Login from "./components/Login"
@@ -14,6 +14,7 @@ import PageNotFound from "./components/PageNotFound"
 import Dashbord from "./components/Dashbode"
 import CreateBlog from "./components/DashbordComponents/CreateBlog"
 import AdminProfile from "./components/DashbordComponents/adminProfile"
+import AdminRoutes from "./components/utils/AdminRoutes"
 function App() {
 
   // getting token form the local storage
@@ -42,17 +43,14 @@ function App() {
           path: "/blogdetail/:id",
           element: <SingePageBlog />
         },
-        {
-          path: "/signup",
-          element: <Signup />
-        },
-        {
-          path: "/login",
-          element: <Login />
-        },
+
+
         {
           path: "/dashbord",
-          element: token ? <Dashbord /> : <Navigate to="/login" />
+          element:
+            <AdminRoutes>
+              <Dashbord />
+            </AdminRoutes>
         },
 
         {
@@ -70,6 +68,14 @@ function App() {
           element: <PageNotFound />
         },
       ]
+    },
+    {
+      path: "/signup",
+      element: <Signup />
+    },
+    {
+      path: "/login",
+      element: <Login />
     },
   ])
   return (<>

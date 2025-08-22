@@ -1,6 +1,6 @@
 
 import React, { useContext, useState } from 'react'
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { NavLink } from 'react-router-dom'
 import Blogcontext from './context/createContext.jsx'
 import axios from 'axios'
@@ -10,7 +10,7 @@ import toast from "react-hot-toast"
 
 const Signup = () => {
 
-   const Navigate=useNavigate()
+  const Navigate = useNavigate()
   const [user, setuser] = useState({
     userName: "",
     email: "",
@@ -47,7 +47,7 @@ const Signup = () => {
 
       console.log("user from user signup :", user.role)
       toast.success(`${data.message} ${user.role}` || "user Registered successfully !")
-        Navigate("/login")
+      Navigate("/login")
 
     } catch (error) {
       console.log("error from res :", error)
@@ -125,7 +125,7 @@ const Signup = () => {
 
         {/* Role */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 pt-3 w-full">
-          <h3 className="text-xl sm:text-2xl font-medium">Role</h3>
+          <h3 className="text-xl sm:text-2xl font-medium"> Select Role</h3>
           <select
             className="py-2 px-4 border-2 border-white rounded-lg text-gray-400 bg-black w-full sm:w-auto"
             value={user.role}
@@ -149,7 +149,7 @@ const Signup = () => {
           file:bg-blue-50 file:text-blue-700
           hover:file:bg-blue-100
         "
-           
+
             onChange={(e) => setuser({ ...user, userprofile: e.target.files[0] })}
           />
         </div>

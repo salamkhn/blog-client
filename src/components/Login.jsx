@@ -35,7 +35,7 @@ const Login = () => {
 
       // toast with success
       toast.success(data.message)
-      navigate("/dashbord")
+      navigate("/")
 
     } catch (error) {
       toast.error(error.response.data.message)
