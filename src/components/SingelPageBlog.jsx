@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import React from "react";
 
-const SingePageBlog = () => {
+const SingelPageBlog = () => {
   const Navigate = useNavigate()
   const { id } = useParams()
 
@@ -75,4 +75,4 @@ const SingePageBlog = () => {
     </div>
   </>)
 }
-export default SingePageBlog
+export default SingelPageBlog
