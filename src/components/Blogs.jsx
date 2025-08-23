@@ -7,16 +7,16 @@ import { NavLink } from "react-router-dom"
 
 const Blogs = () => {
   const blogsData = useContext(Blogcontext)
-  
+
   const {
     allBlogs
   } = blogsData
 
-  console.log("Blog in Blogs =>:", typeof allBlogs)
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 my-14 mx-6">
       {allBlogs?.map((blog, index) => {
-        return (<> <NavLink key={blog._id || index} to={`/blogdetail/${blog._id}`}
+        return (<NavLink key={blog._id || index} to={`/blogdetail/${blog._id}`}
 
           className="bg-[#101828] text-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-2xl transition duration-300 flex flex-col"
         >
@@ -38,8 +38,7 @@ const Blogs = () => {
               {blog.category}
             </span>
           </div>
-        </NavLink>
-        </>);
+        </NavLink>);
       })}
     </div>
   );

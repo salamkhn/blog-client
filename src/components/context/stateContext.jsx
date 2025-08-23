@@ -26,7 +26,7 @@ const StateContext = ({ children }) => {
             }
           }
         );
-        console.log("data :", data.Blogs)
+      
         setallBlogs(data.Blogs || [])
       } catch (err) {
         console.log("error in fetching all blogs :", err)
@@ -40,7 +40,7 @@ const StateContext = ({ children }) => {
           "Content-Type": "application/json"
         }
       })
-      console.log("creaters :", data.users)
+     
       setCreaters(data.users)
     }
     fetchAllCreater()

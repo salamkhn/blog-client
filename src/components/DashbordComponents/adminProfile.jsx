@@ -7,8 +7,7 @@ export const AdminProfile = () => {
   const navigate = useNavigate()
   const { creater } = useContext(Blogcontext)
   const adminid = localStorage.getItem("userId")
-  console.log("creater i admingprofiles :", creater)
-  console.log("admin-profile", adminid)
+
 
   //handle navigate
   const handleNavigate = () => {
@@ -20,12 +19,12 @@ export const AdminProfile = () => {
     return person._id === adminid
   })
 
-  console.log("filteredadminProfile :", filteredadminProfile)
+
   return (<>  <div className='flex flex-col justify-center items-center'>
     <div className="flex justify-center items-center min-h-screen bg-gray-100 p-6">
       {
         filteredadminProfile.map((curProlile, index) => {
-          return <div className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-sm text-center border border-gray-200">
+          return <div key={index} className="bg-white shadow-lg rounded-2xl p-6 w-full max-w-sm text-center border border-gray-200">
             {/* Profile Image */}
             <img
               src={curProlile.userprofile}

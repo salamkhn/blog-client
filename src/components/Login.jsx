@@ -28,7 +28,7 @@ const Login = () => {
         }
 
       )
-      console.log("data from the token :", data)
+     
       // setting token in local storage 
       localStorage.setItem("jwt", data.token)
       localStorage.setItem("userId", data.userID)

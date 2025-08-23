@@ -19,7 +19,7 @@ function App() {
 
   // getting token form the local storage
   const token = localStorage.getItem("jwt")
-  console.log("token in app.jsx :", token)
+
   const router = createBrowserRouter([
     {
       path: "/",

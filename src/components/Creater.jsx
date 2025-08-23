@@ -5,7 +5,7 @@ import Blogcontext from './context/createContext'
 const Creaters = () => {
   const createrContext = useContext(Blogcontext)
   const { creater } = createrContext
-  console.log("creater :", creater)
+
   return (<>
     <div className="w-full bg-amber-50 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 py-4 px-4 md:py-6 md:px-10">
       {creater.map((user, index) => (

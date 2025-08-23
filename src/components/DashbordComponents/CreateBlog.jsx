@@ -38,7 +38,6 @@ export const CreateBlog = () => {
       formdata.append("image", blog.image)
       formdata.append("content", blog.content)
 
-      console.log("this blog created :", blog)
       const { data } = await axios.post("http://localhost:3333/api/blog/create", formdata,
         { withCredentials: true }
       )
@@ -55,7 +54,7 @@ export const CreateBlog = () => {
       navigate("/dashbord")
 
     } catch (err) {
-      console.log("error from create blog :=>", err)
+   
       toast.error(err.response.data.message)
     }
 

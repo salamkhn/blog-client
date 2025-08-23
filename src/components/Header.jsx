@@ -13,7 +13,7 @@ const Header = () => {
     localStorage.removeItem("userId")
     document.cookie = "jwt=; expires=thu,01 jan 1988 00:00:00 UTC;path=/";
     toast.success("Logout successfully")
-    console.log("user logout successfully")
+
     navigate("/login")
 
 
@@ -31,7 +31,7 @@ const Header = () => {
 
   // grtting token from the local storage for logout logic
   const token = localStorage.getItem("jwt");
-  console.log("token in header :", token)
+
   return (<>
     <header className='sticky w-screen top-0 z-50 bg-[#101828] py-4 px-5 text-gray-300 flex flex-row justify-between md:justify-around'>
 

@@ -11,7 +11,7 @@ import toast from 'react-hot-toast'
 const Dashbord = () => {
   const [userSpecifiedBlogs, setuserSpecifiedBlogs] = useState([])
   const { creater } = useContext(Blogcontext)
-  console.log("creater :", creater)
+
   const navigate = useNavigate()
 
   // const handlelogout=()=>{
@@ -22,7 +22,7 @@ const Dashbord = () => {
     localStorage.removeItem("userId")
     document.cookie = "jwt=; expires=thu,01 jan 1988 00:00:00 UTC;path=/";
     toast.success("Logout successfully")
-    console.log("user logout successfully")
+
     navigate("/login")
 
   }
@@ -32,7 +32,7 @@ const Dashbord = () => {
   const userID = localStorage.getItem("userId")
   const filteredCreater = creater.filter((creater) => creater._id === userID)
 
-  console.log("filteredCreater :", filteredCreater)
+
 
 
 
@@ -46,17 +46,16 @@ const Dashbord = () => {
     navigate("/createBlog")
   }
 
-  console.log("userID :", userID)
+
 
   useEffect(() => {
     const fetchedUserSpecificBlog = async () => {
       const { data } = await axios.get(`http://localhost:3333/api/blog/userspecificblogs/${userID}`, {
         withCredentials: true,
       })
-      console.log("userSpecificBlog :", data)
+
       setuserSpecifiedBlogs(data.userSpecificBlogs)
 
-      console.log("userSpecifiedBlogs :", userSpecifiedBlogs)
     }
     fetchedUserSpecificBlog()
   }, [])
@@ -117,8 +116,8 @@ const Dashbord = () => {
       <div>
         <div className="flex flex-wrap gap-6 py-14 sm:mx-3 md:mx-4 lg:mx-5 h-auto">
           {userSpecifiedBlogs?.map((blog, index) => {
-            console.log("blog_id-checking =:>", blog._id)
-            return (<> <div key={blog._id || index}
+
+            return (<div key={blog._id || index}
               className="bg-[#101828] text-white rounded-lg shadow-lg overflow-hidden transform hover:scale-105 hover:shadow-2xl transition duration-300 flex flex-col"
             >
               {/* Image */}
@@ -145,9 +144,7 @@ const Dashbord = () => {
                   <button onClick={() => deleteHandle(blog._id)} className='bg-red-500 py-1.5 px-1.5 rounded-sm hover:rounded:lg cursor-pointer'>Delete</button>
                 </div>
               </div>
-            </div>
-
-            </>);
+            </div>);
           })}
         </div>
       </div>

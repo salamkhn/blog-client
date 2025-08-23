@@ -7,19 +7,19 @@ import React from "react";
 const SingePageBlog = () => {
   const Navigate = useNavigate()
   const { id } = useParams()
-  console.log("id :", id)
+
 
   const blogsData = useContext(Blogcontext);
-  console.log("single blogs details :=>", blogsData)
+
 
 
   const { allBlogs } = blogsData
 
-  console.log("allBlogs details :=>", allBlogs)
+ 
 
   //filtering logic 
   const filteredData = allBlogs.filter((blog, index) => blog._id === id)
-  console.log("filteredData :", filteredData)
+
 
 
   // handle navigation btns.

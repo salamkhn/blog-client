@@ -36,7 +36,6 @@ const Signup = () => {
     e.preventDefault()
 
 
-    console.log("user :", user)
     try {
       const { data } = await axios.post("http://localhost:3333/api/user/register", formdata, {
         withCredentials: true,
@@ -45,12 +44,12 @@ const Signup = () => {
         }
       })
 
-      console.log("user from user signup :", user.role)
+   
       toast.success(`${data.message} ${user.role}` || "user Registered successfully !")
       Navigate("/login")
 
     } catch (error) {
-      console.log("error from res :", error)
+    
       // if response come from backend
       if (error.response) {
         toast.error(error.response.data.message)
