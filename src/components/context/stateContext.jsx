@@ -3,9 +3,9 @@ import Blogcontext from './createContext'
 import { useState } from 'react'
 import axios from "axios"
 import { useEffect } from 'react'
-import { Blog } from '../../../../Server/model/blogModel'
 
-import toast from "react-hot-toast"
+
+
 const StateContext = ({ children }) => {
   const [allBlogs, setallBlogs] = useState([])
   const [creater, setCreaters] = useState([])
@@ -26,7 +26,7 @@ const StateContext = ({ children }) => {
             }
           }
         );
-      
+
         setallBlogs(data.Blogs || [])
       } catch (err) {
         console.log("error in fetching all blogs :", err)
@@ -40,7 +40,7 @@ const StateContext = ({ children }) => {
           "Content-Type": "application/json"
         }
       })
-     
+
       setCreaters(data.users)
     }
     fetchAllCreater()

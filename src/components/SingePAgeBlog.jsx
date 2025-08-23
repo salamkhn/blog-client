@@ -15,7 +15,7 @@ const SingePageBlog = () => {
 
   const { allBlogs } = blogsData
 
- 
+
 
   //filtering logic 
   const filteredData = allBlogs.filter((blog, index) => blog._id === id)
