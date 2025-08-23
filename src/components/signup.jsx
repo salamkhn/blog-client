@@ -158,7 +158,7 @@ const Signup = () => {
         <button type='submit'
           className="py-3 w-full border-2 rounded-2xl text-xl sm:text-2xl bg-white text-black hover:bg-gray-200 transition-all duration-300 mt-4"
         >
-          Login
+          Signup
         </button>
       </div>
       <p className='pt-3 text-xl'>already have an account ?<NavLink className="px-1 italic font-thin text-blue-700 text-italic underline" to="/login">login</NavLink></p>

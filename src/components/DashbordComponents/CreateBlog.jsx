@@ -39,13 +39,10 @@ export const CreateBlog = () => {
       formdata.append("content", blog.content)
 
       console.log("this blog created :", blog)
-
-
-
       const { data } = await axios.post("http://localhost:3333/api/blog/create", formdata,
         { withCredentials: true }
       )
-
+      
       //showing response in toastx
       toast.success(data.message)
       // setting field's to empty
@@ -58,6 +55,7 @@ export const CreateBlog = () => {
       navigate("/dashbord")
 
     } catch (err) {
+      console.log("error from create blog :=>", err)
       toast.error(err.response.data.message)
     }
 
@@ -66,7 +64,7 @@ export const CreateBlog = () => {
   }
 
   //categories Array
-  const Categories = ["education", "tech", "branding", "health", "kirana", "marketing", "sales"]
+  const Categories = ["education", "tech", "branding", "health", "kirana", "marketing", "sales", "education", "tech", "branding", "health", "kirana", "marketing", "sales", "technology", "travel", "food", "business", "personal", "entertainment", "finance", "sports", "career & job blog"]
 
   return (<>
     <div className='min-h-screen flex justify-center items-center bg-gray-700'>
