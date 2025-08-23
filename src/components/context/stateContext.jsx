@@ -3,6 +3,7 @@ import Blogcontext from './createContext'
 import { useState } from 'react'
 import axios from "axios"
 import { useEffect } from 'react'
+import api from '../../lib/api'
 
 
 
@@ -18,7 +19,7 @@ const StateContext = ({ children }) => {
   useEffect(() => {
     const fetchAllBlogs = async () => {
       try {
-        const { data } = await axios.get("http://localhost:3333/api/blog/allblogs",
+        const { data } = await api.get("/api/blog/allblogs",
           {
             withCredentials: true,
             headers: {
@@ -34,7 +35,7 @@ const StateContext = ({ children }) => {
     }
 
     const fetchAllCreater = async () => {
-      const { data } = await axios.get("http://localhost:3333/api/user/allusers", {
+      const { data } = await api.get("/api/user/allusers", {
         withCredentials: true,
         headers: {
           "Content-Type": "application/json"

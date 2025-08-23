@@ -6,6 +6,7 @@ import Blogcontext from './context/createContext.jsx'
 import axios from 'axios'
 
 import toast from "react-hot-toast"
+import api from '../lib/api.js'
 
 
 const Signup = () => {
@@ -37,7 +38,7 @@ const Signup = () => {
 
 
     try {
-      const { data } = await axios.post("http://localhost:3333/api/user/register", formdata, {
+      const { data } = await api.post("/api/user/register", formdata, {
         withCredentials: true,
         headers: {
           "Content-Type": "multipart/form-data"

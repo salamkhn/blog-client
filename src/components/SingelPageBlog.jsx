@@ -11,8 +11,6 @@ const SingelPageBlog = () => {
 
   const blogsData = useContext(Blogcontext);
 
-
-
   const { allBlogs } = blogsData
 
 

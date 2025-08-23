@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { IoMdArrowRoundBack } from "react-icons/io";
+import api from '../../lib/api';
 
 
 export const CreateBlog = () => {
@@ -38,10 +39,10 @@ export const CreateBlog = () => {
       formdata.append("image", blog.image)
       formdata.append("content", blog.content)
 
-      const { data } = await axios.post("http://localhost:3333/api/blog/create", formdata,
+      const { data } = await api.post("/api/blog/create", formdata,
         { withCredentials: true }
       )
-      
+
       //showing response in toastx
       toast.success(data.message)
       // setting field's to empty
@@ -54,7 +55,7 @@ export const CreateBlog = () => {
       navigate("/dashbord")
 
     } catch (err) {
-   
+
       toast.error(err.response.data.message)
     }
 

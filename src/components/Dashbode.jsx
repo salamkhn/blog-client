@@ -50,7 +50,7 @@ const Dashbord = () => {
 
   useEffect(() => {
     const fetchedUserSpecificBlog = async () => {
-      const { data } = await axios.get(`http://localhost:3333/api/blog/userspecificblogs/${userID}`, {
+      const { data } = await api.get(`/api/blog/userspecificblogs/${userID}`, {
         withCredentials: true,
       })
 

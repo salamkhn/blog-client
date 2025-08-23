@@ -4,6 +4,7 @@ import axios from 'axios'
 import toast from 'react-hot-toast'
 import { NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import api from '../lib/api'
 
 const Login = () => {
   const navigate = useNavigate()
@@ -15,7 +16,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("http://localhost:3333/api/user/login",
+      const { data } = await api.post("/api/user/login",
         {
           email,
           password
@@ -28,7 +29,7 @@ const Login = () => {
         }
 
       )
-     
+
       // setting token in local storage 
       localStorage.setItem("jwt", data.token)
       localStorage.setItem("userId", data.userID)
