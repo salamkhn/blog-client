@@ -7,6 +7,7 @@ import api from '../../lib/api'
 
 
 
+
 const StateContext = ({ children }) => {
   const [allBlogs, setallBlogs] = useState([])
   const [creater, setCreaters] = useState([])
@@ -27,8 +28,10 @@ const StateContext = ({ children }) => {
             }
           }
         );
+        console.log('data from backend:=>', data)
 
         setallBlogs(data.Blogs || [])
+        console.log("all-blogs-data =>", allBlogs)
       } catch (err) {
         console.log("error in fetching all blogs :", err)
       }
