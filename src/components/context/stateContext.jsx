@@ -14,7 +14,7 @@ const StateContext = ({ children }) => {
 
 
 
-  //get Alltodos
+  //get Allblogs
 
   useEffect(() => {
     const fetchAllBlogs = async () => {
