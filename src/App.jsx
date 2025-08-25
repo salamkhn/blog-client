@@ -15,10 +15,14 @@ import Dashbord from "./components/Dashbode"
 import CreateBlog from "./components/DashbordComponents/CreateBlog"
 import AdminProfile from "./components/DashbordComponents/adminProfile"
 import AdminRoutes from "./components/utils/AdminRoutes"
+import { useNavigate } from "react-router-dom"
+
 function App() {
+  const navigate = useNavigate()
 
   // getting token form the local storage
   const token = localStorage.getItem("jwt")
+  console.log("token form app.jsx :", token)
 
   const router = createBrowserRouter([
     {
@@ -27,7 +31,7 @@ function App() {
       children: [
         {
           path: "/",
-          element: <Home />
+          element: token ? <Home /> : navigate("/login")
 
         },
         {
