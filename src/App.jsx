@@ -25,6 +25,17 @@ function App() {
   const token = localStorage.getItem("jwt")
   console.log("token form app.jsx :", token)
 
+
+  //user effect for deleting tokens
+  useEffect(() => {
+    const expire = localStorage.getItem("expire");
+    if (expire && new Date().getTime() > expire) {
+      localStorage.removeItem("jwt");
+      localStorage.removeItem("userId");
+      localStorage.removeItem("expire");
+    }
+  }, []);
+
   const router = createBrowserRouter([
     {
       path: "/",

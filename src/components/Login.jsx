@@ -38,12 +38,7 @@ const Login = () => {
 
       // its deleting from localstorage after 1 hr
 
-      const expire = localStorage.getItem("expire")
-      if (expire && new Date().getTime() > expire) {
-        localStorage.removeItem("jwt")
-        localStorage.removeItem("userId")
-        localStorage.removeItem("expire")
-      }
+     
 
       // toast with success
       toast.success(data.message)
