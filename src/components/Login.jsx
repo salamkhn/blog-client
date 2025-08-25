@@ -30,9 +30,20 @@ const Login = () => {
 
       )
 
-      // setting token in local storage 
+      // setting token in local storage
+      const now = new Date().getTime();
       localStorage.setItem("jwt", data.token)
       localStorage.setItem("userId", data.userID)
+      localStorage.setItem("expire", now + 600000)
+
+      // its deleting from localstorage after 1 hr
+
+      const expire = localStorage.getItem("expire")
+      if (expire && new Date().getTime() > expire) {
+        localStorage.removeItem("jwt")
+        localStorage.removeItem("userId")
+        localStorage.removeItem("expire")
+      }
 
       // toast with success
       toast.success(data.message)
