@@ -16,9 +16,10 @@ import CreateBlog from "./components/DashbordComponents/CreateBlog"
 import AdminProfile from "./components/DashbordComponents/adminProfile"
 import AdminRoutes from "./components/utils/AdminRoutes"
 import { useNavigate } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 
 function App() {
-  const navigate = useNavigate()
+
 
   // getting token form the local storage
   const token = localStorage.getItem("jwt")
@@ -31,7 +32,7 @@ function App() {
       children: [
         {
           path: "/",
-          element: token ? <Home /> : navigate("/login")
+          element: token ? <Home /> : <Navigate to='/login' />
 
         },
         {
